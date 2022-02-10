@@ -3,6 +3,6 @@
 .idea/*
 /Cargo.lock
 node_modules
-demo/client/target
-demo/client/target/
-demo/client/target/*
+client/target
+client/target/
+client/target/*

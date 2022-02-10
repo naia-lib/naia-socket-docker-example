@@ -8,6 +8,8 @@ edition = "2021"
 publish = false
 
 [dependencies]
+naia-client-socket = { path = "../../naia-socket/client", features = ["wbindgen"] }
+naia-socket-docker-example-shared = { path = "../shared" }
 log = "0.4.6"
 cfg-if = "0.1.10"
 

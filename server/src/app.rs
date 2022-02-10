@@ -1,6 +1,6 @@
 use naia_server_socket::{Packet, PacketReceiver, PacketSender, ServerAddrs, Socket};
 
-use naia_socket_demo_shared::{get_shared_config, PING_MSG, PONG_MSG};
+use naia_socket_docker_example_shared::{get_shared_config, PING_MSG, PONG_MSG};
 
 pub struct App {
     packet_sender: PacketSender,

@@ -1,4 +1,4 @@
-use naia_socket_client_demo_app::App;
+use super::app::App;
 
 cfg_if! {
     if #[cfg(target_arch = "wasm32")] {
