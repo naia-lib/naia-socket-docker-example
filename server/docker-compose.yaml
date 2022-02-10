@@ -3,5 +3,6 @@ services:
   example:
     image: server_example_image:latest
     ports:
-      - "14191:14191"
-      - "14192:14192"
+      - "14191:14191/udp"
+      - "14191:14191/tcp"
+      - "14192:14192/udp"
