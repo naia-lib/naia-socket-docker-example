@@ -1,0 +1,66 @@
+[env]
+ENV_DIR = {source="${CARGO_MAKE_PROFILE}", default_value = "debug", mapping = {release = "release"}}
+CARGO_TARGET_DIR = {value = "target", condition = {env_not_set = ["CARGO_TARGET_DIR"]}}
+CARGO_MANIFEST_DIR = "${CARGO_MAKE_WORKING_DIRECTORY}"
+
+[env.release]
+CARGO_RELEASE_ARGS = "--release"
+
+[tasks.udp-build-local]
+args = ["build", "--features", "use-udp", "@@split(CARGO_RELEASE_ARGS, )"]
+command = "cargo"
+
+[tasks.webrtc-build-local]
+args = ["build", "--features", "use-webrtc", "@@split(CARGO_RELEASE_ARGS, )"]
+command = "cargo"
+
+[tasks.udp-run-local]
+command = "${CARGO_TARGET_DIR}/${ENV_DIR}/${CARGO_MAKE_BINARY_EXECUTABLE_NAME}"
+dependencies = ["udp-build-local"]
+
+[tasks.webrtc-run-local]
+command = "${CARGO_TARGET_DIR}/${ENV_DIR}/${CARGO_MAKE_BINARY_EXECUTABLE_NAME}"
+dependencies = ["webrtc-build-local"]
+
+##### all new UDP DOCKER stuff here! ####
+
+[tasks.delete-docker-context]
+args = ["-rf", "docker-context"]
+command = "rm"
+
+[tasks.create-docker-context]
+args = ["-p", "docker-context"]
+command = "mkdir"
+dependencies = ["delete-docker-context"]
+
+[tasks.copy-bin-to-docker-context]
+args = ["${CARGO_TARGET_DIR}/${ENV_DIR}/${CARGO_MAKE_BINARY_EXECUTABLE_NAME}", "docker-context/example_server"]
+command = "cp"
+dependencies = ["create-docker-context"]
+
+[tasks.copy-dockerfile-to-docker-context]
+args = ["Dockerfile", "docker-context/Dockerfile"]
+command = "cp"
+dependencies = ["create-docker-context"]
+
+[tasks.build-docker-image]
+args = ["build", "docker-context", "-t", "example_server_image"]
+command = "docker"
+dependencies = ["copy-bin-to-docker-context", "copy-dockerfile-to-docker-context"]
+
+[tasks.finish-docker-image]
+alias = "delete-docker-context"
+dependencies = ["build-docker-image"]
+
+[tasks.udp-build-docker]
+dependencies = ["udp-build-local", "finish-docker-image"]
+
+[tasks.start-docker]
+args = ["up"]
+command = "docker-compose"
+
+[tasks.stop-docker]
+args = ["stop"]
+command = "docker-compose"
+
+##########################################

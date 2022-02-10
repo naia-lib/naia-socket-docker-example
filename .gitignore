@@ -6,3 +6,9 @@ node_modules
 client/target
 client/target/
 client/target/*
+server/target
+server/target/
+server/target/*
+server/docker-context
+server/docker-context/
+server/docker-context/*
