@@ -43,10 +43,14 @@ args = ["Dockerfile", "docker-context/Dockerfile"]
 command = "cp"
 dependencies = ["create-docker-context"]
 
+[tasks.clean-docker-images]
+args = ["image", "prune", "--all", "--force"]
+command = "docker"
+
 [tasks.build-docker-image]
 args = ["build", "docker-context", "-t", "server_example_image"]
 command = "docker"
-dependencies = ["copy-bin-to-docker-context", "copy-dockerfile-to-docker-context"]
+dependencies = ["copy-bin-to-docker-context", "copy-dockerfile-to-docker-context", "clean-docker-images"]
 
 [tasks.finish-docker-image]
 args = ["-rf", "docker-context"]
@@ -63,7 +67,7 @@ read -n 1 -s -r -p "Press any key to continue"
 '''
 
 [tasks.start-docker]
-args = ["up", "-d"]
+args = ["up", "-d", "--remove-orphans"]
 command = "docker-compose"
 
 [tasks.stop-docker]

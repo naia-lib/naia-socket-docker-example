@@ -26,7 +26,7 @@ impl App {
         let shared_config = get_shared_config();
 
         let mut socket = Socket::new(shared_config);
-        socket.connect("http://www.localdev.com:14191");
+        socket.connect("http://192.168.1.7:14191");
 
         App {
             packet_sender: socket.get_packet_sender(),
@@ -41,7 +41,7 @@ impl App {
             Ok(event) => match event {
                 Some(packet) => {
                     let message = String::from_utf8_lossy(packet.payload());
-                    info!("Client recv <- {}", message);
+                    info!("Client recv <- {}: {}", self.packet_receiver.remote_addr(), message);
 
                     if message.eq(PONG_MSG) {
                         self.message_count += 1;
@@ -52,7 +52,7 @@ impl App {
                         self.timer.reset();
                         if self.message_count < 10 {
                             let to_server_message: String = PING_MSG.to_string();
-                            info!("Client send -> {}", to_server_message,);
+                            info!("Client send -> {}: {}", self.packet_sender.remote_addr(), to_server_message);
                             self.packet_sender
                                 .send(Packet::new(to_server_message.into_bytes()));
                         }

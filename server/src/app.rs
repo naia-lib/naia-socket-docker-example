@@ -12,15 +12,15 @@ impl App {
         info!("Naia Server Socket Demo started");
 
         let server_address = ServerAddrs::new(
-            "127.0.0.1:14191"
+            "192.168.1.7:14191"
                 .parse()
                 .expect("could not parse Session address/port"),
             // IP Address to listen on for UDP WebRTC data channels
-            "127.0.0.1:14192"
+            "192.168.1.7:14192"
                 .parse()
                 .expect("could not parse WebRTC data address/port"),
             // The public WebRTC IP address to advertise
-            "http://127.0.0.1:14192",
+            "http://192.168.1.7:14192",
         );
         let shared_config = get_shared_config();
 
