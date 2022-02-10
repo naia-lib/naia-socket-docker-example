@@ -55,12 +55,21 @@ dependencies = ["build-docker-image"]
 [tasks.udp-build-docker]
 dependencies = ["udp-build-local", "finish-docker-image"]
 
+[tasks.wait-for-user-input]
+script = '''
+#!/usr/bin/env bash
+read -n 1 -s -r -p "Press any key to continue"
+'''
+
 [tasks.start-docker]
-args = ["up"]
+args = ["up", "-d"]
 command = "docker-compose"
 
 [tasks.stop-docker]
 args = ["stop"]
 command = "docker-compose"
+
+[tasks.serve-docker]
+dependencies = ["start-docker", "wait-for-user-input", "stop-docker"]
 
 ##########################################
