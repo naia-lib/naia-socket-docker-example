@@ -3,6 +3,6 @@ FROM ubuntu:latest
 RUN apt-get update && \
     apt-get install -y openssl
 
-COPY example_server example_server
+COPY server_example server_example
 
-CMD ["sh", "-c", "./example_server"]
+CMD ["sh", "-c", "./server_example"]
