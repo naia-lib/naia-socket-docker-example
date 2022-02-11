@@ -2,11 +2,12 @@
 extern crate cfg_if;
 extern crate log;
 
-mod app;
 mod app_loop;
-
-use app::App;
 use app_loop::start_loop;
+
+use naia_socket_client_demo_app::App;
+
+
 
 cfg_if! {
     if #[cfg(target_arch = "wasm32")] {

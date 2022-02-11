@@ -1,15 +1,14 @@
 [package]
-name = "naia-socket-docker-example-client"
+name = "naia-socket-docker-example-client-wb"
 version = "0.1.0"
 authors = ["connorcarpenter <connorcarpenter@gmail.com>"]
-workspace = ".."
+workspace = "../.."
 license = "MIT OR Apache-2.0"
 edition = "2021"
 publish = false
 
 [dependencies]
-naia-client-socket = { path = "../../naia-socket/client", features = ["wbindgen"] }
-naia-socket-docker-example-shared = { path = "../shared" }
+naia-socket-docker-example-client-demo-app = { path = "../app", features = [ "wbindgen" ] }
 log = "0.4.6"
 cfg-if = "0.1.10"
 
