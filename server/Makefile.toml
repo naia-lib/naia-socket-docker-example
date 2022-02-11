@@ -22,7 +22,13 @@ dependencies = ["udp-build-local"]
 command = "${CARGO_TARGET_DIR}/${ENV_DIR}/${CARGO_MAKE_BINARY_EXECUTABLE_NAME}"
 dependencies = ["webrtc-build-local"]
 
-##### all new UDP DOCKER stuff here! ####
+[tasks.udp-build-docker]
+dependencies = ["udp-build-local", "finish-docker-image"]
+
+[tasks.webrtc-build-docker]
+dependencies = ["webrtc-build-local", "finish-docker-image"]
+
+##### Docker-specific stuff ####
 
 [tasks.delete-docker-context]
 args = ["-rf", "docker-context"]
@@ -56,9 +62,6 @@ dependencies = ["copy-bin-to-docker-context", "copy-dockerfile-to-docker-context
 args = ["-rf", "docker-context"]
 command = "rm"
 dependencies = ["build-docker-image"]
-
-[tasks.udp-build-docker]
-dependencies = ["udp-build-local", "finish-docker-image"]
 
 [tasks.wait-for-user-input]
 script = '''

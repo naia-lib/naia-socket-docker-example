@@ -16,7 +16,7 @@ impl App {
                 .parse()
                 .expect("could not parse Session address/port"),
             // IP Address to listen on for UDP WebRTC data channels
-            "192.168.1.7:14192"
+            "0.0.0.0:14192"
                 .parse()
                 .expect("could not parse WebRTC data address/port"),
             // The public WebRTC IP address to advertise
