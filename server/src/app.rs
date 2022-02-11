@@ -12,7 +12,7 @@ impl App {
         info!("Naia Server Socket Demo started");
 
         let server_address = ServerAddrs::new(
-            "192.168.1.7:14191"
+            "0.0.0.0:14191"
                 .parse()
                 .expect("could not parse Session address/port"),
             // IP Address to listen on for UDP WebRTC data channels
