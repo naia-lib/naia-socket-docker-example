@@ -1,6 +1,9 @@
 /target
 **/*.rs.bk
+.idea
 .idea/*
+.run
+.run/*
 /Cargo.lock
 node_modules
 client/target
