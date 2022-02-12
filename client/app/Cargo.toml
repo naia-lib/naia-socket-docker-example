@@ -8,8 +8,8 @@ edition = "2021"
 publish = false
 
 [features]
-mquad = [ "naia-client-socket/mquad", "naia-socket-demo-shared/mquad", "miniquad" ]
-wbindgen = [ "naia-client-socket/wbindgen", "naia-socket-demo-shared/wbindgen" ]
+mquad = [ "naia-client-socket/mquad", "naia-socket-docker-example-shared/mquad", "miniquad" ]
+wbindgen = [ "naia-client-socket/wbindgen", "naia-socket-docker-example-shared/wbindgen" ]
 
 [dependencies]
 naia-client-socket = { path = "../../../naia-socket/client" }

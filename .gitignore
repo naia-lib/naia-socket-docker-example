@@ -6,9 +6,13 @@
 .run/*
 /Cargo.lock
 node_modules
-client/target
-client/target/
-client/target/*
+clion-run-config-backup.xml
+client/wasm_bindgen/target
+client/wasm_bindgen/target/
+client/wasm_bindgen/target/*
+client/miniquad/target
+client/miniquad/target/
+client/miniquad/target/*
 server/target
 server/target/
 server/target/*

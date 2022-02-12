@@ -7,5 +7,9 @@ license = "MIT OR Apache-2.0"
 edition = "2021"
 publish = false
 
+[features]
+mquad = [ "naia-socket-shared/mquad" ]
+wbindgen = [ "naia-socket-shared/wbindgen" ]
+
 [dependencies]
-naia-socket-shared = { path = "../../naia-socket/shared", features = ["wbindgen"] }
+naia-socket-shared = { path = "../../naia-socket/shared" }

@@ -1,6 +1,6 @@
 use miniquad::*;
 
-use naia_socket_client_demo_app::App;
+use naia_socket_docker_example_client_app::App;
 
 struct Stage {
     ctx: Context,

@@ -1,4 +1,4 @@
-use super::app::App;
+use naia_socket_docker_example_client_app::App;
 
 cfg_if! {
     if #[cfg(target_arch = "wasm32")] {
