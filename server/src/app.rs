@@ -28,8 +28,8 @@ impl App {
         socket.listen(server_address);
 
         App {
-            packet_sender: socket.get_packet_sender(),
-            packet_receiver: socket.get_packet_receiver(),
+            packet_sender: socket.packet_sender(),
+            packet_receiver: socket.packet_receiver(),
         }
     }
 
