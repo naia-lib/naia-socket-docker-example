@@ -1,0 +1,33 @@
+[config]
+default_to_workspace = false
+
+[tasks.udp-build-docker]
+args = ["build", "--build-arg", "server_protocol=use-udp", "-t", "server_image", "."]
+command = "docker"
+dependencies = []
+
+[tasks.webrtc-build-docker]
+args = ["build", "--build-arg", "server_protocol=use-webrtc", "-t", "server_image", "."]
+command = "docker"
+dependencies = []
+
+[tasks.wait-for-user-input]
+script = '''
+#!/usr/bin/env bash
+read -n 1 -s -r -p "Press any key to continue"
+'''
+
+[tasks.start-docker]
+args = ["up", "-d", "--remove-orphans"]
+command = "docker-compose"
+
+[tasks.stop-docker]
+args = ["down"]
+command = "docker-compose"
+
+[tasks.serve-docker]
+dependencies = ["start-docker", "wait-for-user-input", "stop-docker"]
+
+[tasks.read-docker-logs]
+args = ["logs", "-f", "example"]
+command = "docker-compose"

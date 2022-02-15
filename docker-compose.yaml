@@ -1,7 +1,7 @@
 version: '3'
 services:
   example:
-    image: server_example_image:latest
+    image: server_image:latest
     ports:
       - "14191:14191/udp"
       - "14191:14191/tcp"

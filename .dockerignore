@@ -1,0 +1,8 @@
+*/target*
+*/.idea*
+*/.run*
+*/client
+*/client/*
+.gitignore
+*LICENSE*
+*.md
